@@ -16,8 +16,26 @@ function decimalABinario(numeroDecimal) {
     return binario;
 }
 
-// --- ZONA DE PRUEBAS ---
-// Esto imprimirá el resultado en la consola del navegador para verificar que funcione
-console.log("El número 25 en binario es:", decimalABinario(25)); // Debería dar 11001
-console.log("El número 8 en binario es:", decimalABinario(8));   // Debería dar 1000
+// 1. Enganchamos los elementos del HTML usando su ID
+const inputDecimal = document.getElementById("inputDecimal");
+const btnConvertir = document.getElementById("btnConvertir");
+const resultadoTexto = document.getElementById("resultado");
+
+// 2. Le decimos al botón que "escuche" el clic del usuario
+btnConvertir.addEventListener("click", function() {
+    // Tomamos el valor que el usuario escribió y lo pasamos a número entero
+    let numeroIngresado = parseInt(inputDecimal.value);
+
+    // Validación simple por si el usuario le da clic al botón estando vacío
+    if (isNaN(numeroIngresado)) {
+        resultadoTexto.innerText = "Por favor, ingresa un número válido.";
+        return;
+    }
+
+    // Usamos tu función matemática
+    let resultadoBinario = decimalABinario(numeroIngresado);
+
+    // Mostramos el resultado final directamente en la pantalla
+    resultadoTexto.innerText = `El número ${numeroIngresado} en binario es: ${resultadoBinario}`;
+});
 
